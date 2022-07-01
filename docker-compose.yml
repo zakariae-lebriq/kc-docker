@@ -2,12 +2,14 @@ version: '3'
 
 services:
   keycloak:
-    image: ambient/keycloak:17.0.1.1
+    image: ambient/keycloak:18.0.0.1
     ports:
       - 443:443
     volumes:
       - ./config.env:/opt/keycloak/conf/config.env
       - ./cert.jks:/opt/keycloak/conf/cert.jks
+      - ./quarkus.properties:/opt/keycloak/conf/quarkus.properties
+      - ./jars/:/opt/keycloak/providers
     depends_on:
       - db
 
@@ -19,6 +21,5 @@ services:
       - './pgsql:/var/lib/postgresql/data'
     environment:
       POSTGRES_DB: 'keycloak'
-      POSTGRES_USER: 'pg_owner'
+      POSTGRES_USER: 'pgowner'
       POSTGRES_PASSWORD: 'pgowner'
-

@@ -8,7 +8,11 @@ services:
       - 1111:1111
     volumes:
       - ./config.env:/opt/keycloak/conf/config.env
+      - ./keycloak.conf:/opt/keycloak/conf/keycloak.conf
       - ./cert.jks:/opt/keycloak/conf/cert.jks
+      - ./quarkus.properties:/opt/keycloak/conf/quarkus.properties
+      - ./jars/:/opt/keycloak/providers
+      - ../themes:/opt/keycloak/themes
     depends_on:
       - db
 
